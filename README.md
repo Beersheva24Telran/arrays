@@ -1,7 +1,5 @@
-# HW 5 Solution
+# HW 6 Definition
 ## testing
-### all tests passed
-![alt text](test-results.png)
+### write tests of all methods with TODO comments (binarySearchtest, insertSortedTest, isOneSwapTest)
 ## functionality
-### written insert and remove methods
-System.arraycopy has been applied
+### write methods containing TODO comments (binarySearch, insertSorted, isOneSwap)
