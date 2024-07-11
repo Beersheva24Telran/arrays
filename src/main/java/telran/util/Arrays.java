@@ -21,11 +21,13 @@ public static int[] add(int [] ar, int number) {
  * @return reference to a new array containing @param number at @param index
  */
 public static int[] insert(int[] ar, int index, int number) {
-    //TODO 
     //creates new array with all elements from the given "ar" and
     //the given "number" at the given index
     //to apply System.arraycopy method 
-    return null; 
+    int[] res = java.util.Arrays.copyOf(ar, ar.length + 1);
+    System.arraycopy(ar, index, res, index + 1, ar.length - index);
+    res[index] = number;
+    return res; 
 }
 /**
  * 
@@ -34,10 +36,11 @@ public static int[] insert(int[] ar, int index, int number) {
  * @return new array with no removed from @param numbers number at @param index
  */
 public static int[] remove(int[] numbers, int index) {
-    //TODO
     //creates new array with no element in "numbers" at "index"
     //to apply System.arraycopy method 
-    return null;
+    int[] res = java.util.Arrays.copyOf(numbers, numbers.length - 1);
+    System.arraycopy(numbers, index + 1, res, index, res.length - index);
+    return res;
 
 }
 }
