@@ -72,4 +72,45 @@ private int[] getRandomArray(int nElements) {
     }
     return res;
 }
+@Test
+void binarySearchTest() {
+int [] arSorted = {10, 20, 30, 40, 50};
+//existing keys
+assertEquals(0, binarySearch(arSorted, 10));
+assertEquals(4, binarySearch(arSorted, 50));
+assertEquals(2, binarySearch(arSorted, 30));
+//not existing keys
+assertEquals(-1, binarySearch(arSorted, 5));
+assertEquals(-3, binarySearch(arSorted, 25));
+assertEquals(-6, binarySearch(arSorted, 55));
+}
+@Test
+void insertSortedTest() {
+    int[] expected = {5, 10, 10, 20, 25, 30, 40, 50, 55};
+    int [] insertedNumbers = {10, 55, 5, 25};
+    int [] actual = {10, 20, 30, 40, 50};
+    for(int i = 0; i < insertedNumbers.length; i++) {
+        actual = insertSorted(actual, insertedNumbers[i]);
+    }
+    assertArrayEquals(expected, actual);
+}
+@Test
+void isOneSwapTest() {
+    
+int [] arTrue1 = {1, 2, 10, 4, 7, 3};
+int [] arTrue2 = {1, 2, 10, 4, 4, 20};
+int [] arTrue3 = {1, 2, 10, 4, 20, 30};
+int [] arTrue4 = {10, 2, 1, 10, 20, 30};
+int [] arFalse1 = {20, 3, 3, 10, 20, 30};
+int []arFalse2 = {1, 2, 10, 4, 7, 5};
+int []arFalse3 = {1, 2, 3, 4, 5, 10};
+int [][] arraysTrue = {arTrue1, arTrue2, arTrue3, arTrue4};
+int [][] arraysFalse = {arFalse1, arFalse2, arFalse3};
+for(int i = 0; i < arraysTrue.length; i++) {
+    assertTrue(isOneSwap(arraysTrue[i]), "" + (i + 1));
+}
+for(int i = 0; i < arraysFalse.length; i++) {
+    assertFalse(isOneSwap(arraysFalse[i]), "" + (i + 1));
+}
+}
 }
