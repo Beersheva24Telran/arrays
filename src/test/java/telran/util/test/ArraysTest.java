@@ -113,4 +113,15 @@ for(int i = 0; i < arraysFalse.length; i++) {
     assertFalse(isOneSwap(arraysFalse[i]), "" + (i + 1));
 }
 }
+
+@Test
+void sortAnyTypeTest(){
+    String [] strings = {"lmn", "cfta", "w", "aa"};
+    String [] expectedASCII ={"aa", "cfta", "lmn", "w"};
+    String [] expectedLength = {"w", "aa", "lmn", "cfta"};
+    sort(strings, new ComparatorASCII());
+    assertArrayEquals(expectedASCII, strings);
+    sort(strings, new ComparatorLength());
+    assertArrayEquals(expectedLength, strings);
+}
 }

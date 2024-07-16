@@ -1,5 +1,7 @@
-# HW 6 Solution
+# HW 7 definition
 ## testing
-![alt text](image.png)
+### Write test for public static <T> int binarySearch(T[] array, T key, Comparator<T> comp) 
+### for example, String [] strings = {"aa", "cfta", "lmn", "w"}; and Integer[] numbers = {10, 20, 30, 40, 50}
+be carefully with a comparator
 ## functionality
-### (binarySearchtest, insertSortedTest, isOneSwapTest)
+### write implementation of public static <T> int binarySearch(T[] array, T key, Comparator<T> comp) 
