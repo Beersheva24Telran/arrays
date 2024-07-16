@@ -1,5 +1,5 @@
-# HW 6 Definition
+# HW 6 Solution
 ## testing
-### write tests of all methods with TODO comments (binarySearchtest, insertSortedTest, isOneSwapTest)
+![alt text](img.png)
 ## functionality
-### write methods containing TODO comments (binarySearch, insertSorted, isOneSwap)
+### (binarySearchtest, insertSortedTest, isOneSwapTest)
