@@ -1,5 +1,5 @@
 # HW 6 Solution
 ## testing
-![alt text](img.png)
+![alt text](image.png)
 ## functionality
 ### (binarySearchtest, insertSortedTest, isOneSwapTest)
