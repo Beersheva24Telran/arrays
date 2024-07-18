@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static telran.util.Arrays.*;
 
+import java.util.Comparator;
 import java.util.Random;
 public class ArraysTest {
 private static final int N_ELEMENTS = 1_000;
@@ -123,5 +124,46 @@ void sortAnyTypeTest(){
     assertArrayEquals(expectedASCII, strings);
     sort(strings, new ComparatorLength());
     assertArrayEquals(expectedLength, strings);
+}
+@Test
+void binarySearchObjectTest() {
+    String [] strings ={"aa", "cfta", "lmn", "w"};
+    Integer[] numbers = {1000, 2000, 3000};
+    Comparator<String> compStrings = new ComparatorASCII();
+    Comparator<Integer> compInteger = new ComparatorNumbers();
+    //Existing keys
+    assertEquals(1, binarySearch(strings, "cfta", compStrings));
+    assertEquals(0, binarySearch(numbers, 1000, compInteger));
+    assertEquals(2, binarySearch(numbers, 3000, compInteger));
+    //Not existing keys
+    assertEquals(-1, binarySearch(strings, "a", compStrings));
+    assertEquals(-5, binarySearch(strings, "ww", compStrings));
+    assertEquals(-2, binarySearch(numbers, 1500, compInteger));
+}
+@Test
+void binarySearchNoComparator() {
+    String [] strings ={"aa", "cfta", "lmn", "w"};
+    Person prs1 = new Person(10, "Vasya");
+    Person prs2 = new Person(20, "Itay");
+    Person prs3 = new Person(30, "Sara");
+    Person [] persons = {
+        prs1, prs2, prs3
+    };
+    assertEquals(1, binarySearch(strings, "cfta"));
+    assertEquals(0, binarySearch(persons, prs1));
+    assertEquals(-1, binarySearch(persons, new Person(5, "Serg")));
+}
+@Test
+void evenOddSorting() {
+    Integer[] array = {7, -8, 10, -100, 13, -10, 99};
+    Integer[] expected = {-100, -10, -8, 10, 99, 13, 7}; //even numbers in ascending order first, odd numbers in descending order after that
+    sort(array, new EvenOddComparator());
+    assertArrayEquals(expected, array);
+}
+@Test
+void findTest() {
+    Integer[] array = {7, -8, 10, -100, 13, -10, 99};
+    Integer [] expected = {7, 13, 99};
+    assertArrayEquals(expected, find(array, new OddNumbersPredicate()));
 }
 }

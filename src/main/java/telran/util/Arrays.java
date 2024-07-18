@@ -1,6 +1,7 @@
 package telran.util;
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class Arrays {
     public static int search(int[] ar, int key) {
@@ -186,7 +187,44 @@ public class Arrays {
 
     }
     public static <T> int binarySearch(T[] array, T key, Comparator<T> comp) {
+        int left = 0;
+        int right = array.length - 1;
+        int middle = (left + right) / 2;
+        int compRes = 0;
+        while (left <= right && (compRes = comp.compare(key, array[middle])) != 0) {
+            if (compRes < 0) {
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+            middle = (left + right) / 2;
+        }
+        return left > right ? -(left + 1) : middle;
+       
+    }
+    public static <T> int binarySearch(T[] array, T key) {
         //TODO
+        //The code should be base on binarySearch 
         return -1;
+    }
+    public static <T> T[] insert(T [] array, int index, T item) {
+        T[] res = java.util.Arrays.copyOf(array, array.length + 1);
+        System.arraycopy(array, index, res, index + 1, array.length - index);
+        res[index] = item;
+        return res;
+    }
+    public static <T> T[] find(T[]array, Predicate<T> predicate) {
+        T[] result = java.util.Arrays.copyOf(array, 0);
+        for(int i = 0; i < array.length; i++) {
+            if(predicate.test(array[i])) {
+                result = insert(result, result.length, array[i]);
+            }
+        }
+        return result;
+    }
+    public static <T> T[] removeIf (T[] array, Predicate<T> predicate){
+        //TODO
+        //using oneline
+        return null;
     }
 }
