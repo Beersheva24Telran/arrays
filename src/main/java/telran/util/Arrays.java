@@ -202,6 +202,7 @@ public class Arrays {
         return left > right ? -(left + 1) : middle;
        
     }
+    @SuppressWarnings("unchecked")
     public static <T> int binarySearch(T[] array, T key) {
         //The code should be based on binarySearch with comparator
         return binarySearch(array, key, (Comparator<T>)Comparator.naturalOrder());
@@ -225,4 +226,17 @@ public class Arrays {
         
         return find(array, predicate.negate());
     }
+   /**
+    * 
+    * @param chars - array of char primitives
+    * @param mustBeRules - array of rules that must be true
+    * @param mustNotBeRule array of rules that must be false
+    * @return empty error message if array of chars matches all rules otherwise specific error message saying what rules don't match
+    */
+    public static String matchesRules(char[] chars,
+     CharacterRule[] mustBeRules, CharacterRule[] mustNotBeRule) {
+        //TODO
+        //consider the class Character for rules definition
+        return "";
+     }
 }
