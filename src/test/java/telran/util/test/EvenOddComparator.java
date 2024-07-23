@@ -6,8 +6,12 @@ public class EvenOddComparator implements Comparator<Integer>{
 
     @Override
     public int compare(Integer arg0, Integer arg1) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compare'");
+       boolean isArg0Even = arg0 % 2 == 0;
+       boolean isArg1Even = arg1 % 2 == 0;
+       boolean noSwapFlag = (isArg0Even && !isArg1Even) ||
+       (isArg0Even && isArg1Even && arg0 <= arg1) ||
+        (!isArg0Even && !isArg1Even && arg0 >= arg1);
+       return noSwapFlag ? -1 : 1;
     }
 
 }

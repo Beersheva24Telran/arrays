@@ -141,6 +141,12 @@ void binarySearchObjectTest() {
     assertEquals(-2, binarySearch(numbers, 1500, compInteger));
 }
 @Test
+void findTest() {
+    Integer[] array = {7, -8, 10, -100, 13, -10, 99};
+    Integer [] expected = {7, 13, 99};
+    assertArrayEquals(expected, find(array, new OddNumbersPredicate()));
+}
+@Test
 void binarySearchNoComparator() {
     String [] strings ={"aa", "cfta", "lmn", "w"};
     Person prs1 = new Person(10, "Vasya");
@@ -155,15 +161,18 @@ void binarySearchNoComparator() {
 }
 @Test
 void evenOddSorting() {
-    Integer[] array = {7, -8, 10, -100, 13, -10, 99};
-    Integer[] expected = {-100, -10, -8, 10, 99, 13, 7}; //even numbers in ascending order first, odd numbers in descending order after that
+    Integer[] array = {-3, 7, -8, 10, -100, 13, -10, 99};
+    Integer[] expected = {-100, -10, -8, 10, 99, 13, 7, -3}; //even numbers in ascending order first, odd numbers in descending order after that
     sort(array, new EvenOddComparator());
     assertArrayEquals(expected, array);
 }
+
 @Test
-void findTest() {
-    Integer[] array = {7, -8, 10, -100, 13, -10, 99};
-    Integer [] expected = {7, 13, 99};
-    assertArrayEquals(expected, find(array, new OddNumbersPredicate()));
-}
+    void testRemoveIf() {
+        Integer[] array = { 7, -8, 10, -100, 13, -10, 99 };
+        Integer[] expected = { -8, 10, -100, -10 };
+        Integer[] actual = removeIf(array, new OddNumbersPredicate());
+        assertArrayEquals(expected, actual);
+
+    }
 }

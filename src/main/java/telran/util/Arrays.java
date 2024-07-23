@@ -203,9 +203,8 @@ public class Arrays {
        
     }
     public static <T> int binarySearch(T[] array, T key) {
-        //TODO
-        //The code should be base on binarySearch 
-        return -1;
+        //The code should be based on binarySearch with comparator
+        return binarySearch(array, key, (Comparator<T>)Comparator.naturalOrder());
     }
     public static <T> T[] insert(T [] array, int index, T item) {
         T[] res = java.util.Arrays.copyOf(array, array.length + 1);
@@ -223,8 +222,7 @@ public class Arrays {
         return result;
     }
     public static <T> T[] removeIf (T[] array, Predicate<T> predicate){
-        //TODO
-        //using oneline
-        return null;
+        
+        return find(array, predicate.negate());
     }
 }
