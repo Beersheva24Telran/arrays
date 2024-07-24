@@ -12,4 +12,4 @@ create two arrays<br>
 ### public static String matchesRules(char[] chars, CharacterRule[] mustBeRules, CharacterRule[] mustNotBeRule)
  see comments for this method <br>
  each rule from  "mustBeRules" should have flag set to "true" <br>
- each rule from  "mustNotBeRules" should have flag set
+ each rule from  "mustNotBeRules" should have flag set to false
