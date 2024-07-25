@@ -2,6 +2,8 @@ package telran.util.test;
 
 import org.junit.jupiter.api.Test;
 
+import telran.util.CharacterRule;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static telran.util.Arrays.*;
 
@@ -9,6 +11,12 @@ import java.util.Comparator;
 import java.util.Random;
 public class ArraysTest {
 private static final int N_ELEMENTS = 1_000;
+private static final String NO_DIGIT = "no digit";
+private static final String NO_UPPER_CASE = "no upper case";
+private static final String NO_LOWER_CASE = "no lower case";
+private static final String NO_DOT = "no dot";
+private static final char DOT_CHARACTER = '.';
+private static final String SPACE_DISALLOWED = "space disallowed";
 int[] numbers = {10, 7, 12, -4, 13, 3, 14};
 @Test
 void searchTest() {
@@ -184,13 +192,37 @@ void evenOddSorting() {
     }
 @Test
 void matchesRulesTest() {
-    //TODO
     //Must be rules: at least one capital letter, at least one lower case letter, at least one digit, at least one dot(.)
     //Must not be rules: space is disallowed
     //examples: mathes - {'a', 'n', '*', 'G', '.', '.', '1'}
     //mismatches - {'a', 'n', '*', 'G', '.', '.', '1', ' '} -> "space disallowed",
     // {'a', 'n', '*',  '.', '.', '1'} -> "no capital",
     // {'a', 'n', '*', 'G', '.', '.'} -> "no digit"
+CharacterRule[] mustBeRules = {
+    new CharacterRule(false, Character::isDigit, NO_DIGIT),
+    new CharacterRule(false,  Character::isUpperCase, NO_UPPER_CASE),
+    new CharacterRule(false, Character::isLowerCase, NO_LOWER_CASE),
+    new CharacterRule(false, c -> c == DOT_CHARACTER, NO_DOT)
+};
+CharacterRule[] mustNotBeRules = {
+    new CharacterRule(false, Character::isWhitespace, SPACE_DISALLOWED)
+};
+char[] noDotArray = {'a', 'n', '*', 'G',  '1'};
+char[] noDigitArray = {'a', 'n', '*', 'G', '.', '.'};
+
+assertEquals(NO_DOT, matchesRules(noDotArray, mustBeRules, mustNotBeRules));
+assertEquals(NO_DIGIT, matchesRules(noDigitArray, mustBeRules, mustNotBeRules));
+char[] noUpperCaseArray = {'a', 'n', '*',  '.', '.', '1'};
+assertEquals(NO_UPPER_CASE, matchesRules(noUpperCaseArray, mustBeRules, mustNotBeRules));
+char[] nothingMatchArray = {' '};
+String nothingMatchMessage = String.join(DELIMETER, new String[]{NO_DIGIT, NO_UPPER_CASE, NO_LOWER_CASE, NO_DOT, SPACE_DISALLOWED});
+assertEquals(nothingMatchMessage, matchesRules(nothingMatchArray, mustBeRules, mustNotBeRules));
+char[] spaceArray = {'a', 'n', '*', 'G', '.', '.', '1', ' '};
+assertEquals(SPACE_DISALLOWED, matchesRules(spaceArray, mustBeRules, mustNotBeRules));
+char[] noLowerCaseArray = { '*', 'G', '.', '.', '1'};
+assertEquals(NO_LOWER_CASE, matchesRules(noLowerCaseArray, mustBeRules, mustNotBeRules));
+char[] matchArray={'a', 'n', '*', 'G', '.', '.', '1'};
+assertEquals("", matchesRules(matchArray, mustBeRules, mustNotBeRules));
 
 }
 }
